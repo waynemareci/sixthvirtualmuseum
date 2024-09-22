@@ -2,34 +2,6 @@ import { Neo4jGraphQL } from "@neo4j/graphql";
 import neo4j from "neo4j-driver";
 import { createYoga } from "graphql-yoga";
 
-/*
-const typeDefs = `
-  type WorkOfArt {
-    workOfArtId: ID!
-    creationDate: Date!
-    fileName: String!
-    title: String!
-    medium: String!
-    creator: [Artist!]! @relationship(type: "CREATED_BY", direction: OUT)
-    style: [Style!]! @relationship(type: "CATEGORIZED_AS", direction: OUT)
-  }
-  
-  type Artist {
-    artistId: ID!
-    name: String!
-    nationality: String
-    birthYear: Date!
-    birthPlace: Point!
-    works: [WorkOfArt!]! @relationship(type: "CREATED", direction: OUT)
-    styles: [Style!]! @relationship(type: "ASSOCIATED_WITH", direction: OUT)
-  }
-
-  type Style {
-    styleId: ID!
-    name: String!
-  }
-  `
-  */
 
 const typeDefs = `
   type JWT @jwt {
@@ -59,6 +31,7 @@ const typeDefs = `
     styleId: ID!
     name: String!
   }
+
   type Business {
     businessId: ID!
     waitTime: Int! @customResolver
@@ -130,14 +103,14 @@ const typeDefs = `
   }
 
   type Query  {
-    allBusinesses: [Business!]!
-    businessBySearchTerm(
-      search: String!
-      first: Int = 10
-      offset: Int = 0
-      orderBy: BusinessOrdering = name_asc
-    ): [Business!]!
-    userById(id: ID!): User
+    #allBusinesses: [Business!]!
+    #businessBySearchTerm(
+    #  search: String!
+    #  first: Int = 10
+    #  offset: Int = 0
+    #  orderBy: BusinessOrdering = name_asc
+    #): [Business!]!
+    #userById(id: ID!): User
     #creatorOfObject(objectId: ID): [Object]
     qualityBusiness: [Business] 
       @cypher(        

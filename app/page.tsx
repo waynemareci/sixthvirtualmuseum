@@ -4,6 +4,8 @@ import "./styles/mdb.min.css";
 import "./styles/snippet.css";
 import "./styles/wheel.css";
 
+import { useRouter } from "next/navigation";
+
 /*
 import {
   MDBCard,
@@ -38,6 +40,7 @@ import {
 */
 import { MDBBtn, MDBContainer, MDBFooter, MDBIcon } from "mdb-react-ui-kit";
 import Select from "react-select";
+import Link from 'next/link'
 //import dynamic from "next/dynamic";
 /*
 const Wheel = dynamic(
@@ -74,39 +77,19 @@ const data = [
 ];
 */
 const segments = [
-  { segmentText: ' ', segColor: 'red' },
-  { segmentText: ' ', segColor: '#FBC31C' },
-  { segmentText: ' ', segColor: 'lime' },
-  { segmentText: ' ', segColor: 'green' },
-  { segmentText: ' ', segColor: '#14BED4' },
-  { segmentText: ' ', segColor: 'blue' },
-  { segmentText: ' ', segColor: '#7249BA' },
-  { segmentText: ' ', segColor: 'green' },
+  { segmentText: " ", segColor: "red" },
+  { segmentText: " ", segColor: "#FBC31C" },
+  { segmentText: " ", segColor: "lime" },
+  { segmentText: " ", segColor: "green" },
+  { segmentText: " ", segColor: "#14BED4" },
+  { segmentText: " ", segColor: "blue" },
+  { segmentText: " ", segColor: "#7249BA" },
+  { segmentText: " ", segColor: "green" },
   // Add more segments as needed
 ];
 
 export default function Home() {
-  /*
-  const [selectedOption, setSelectedOption] = useState<ArrayObjectSelectState>({
-    selectedInstrument: null,
-  });
-  const [mustSpin, setMustSpin] = useState(false);
-*/
-
-  /*
-  useEffect(() => {
-    setMustSpin(true);
-  }, []);
-*/
-
-/*
-  const handleSpinClick = () => {
-    if (!mustSpin) {
-      setMustSpin(true);
-    }
-  };
-*/
-
+  const router = useRouter()
   return (
     <>
       <header>
@@ -201,6 +184,7 @@ export default function Home() {
                   <div className="row align-items-center">
                     <div className="mb-4 mb-md-0">
                       <h3 className="text-center mb-2">Time and Place</h3>
+                      <h6 className="text-center mb-2">(under construction)</h6>
                     </div>
                   </div>
                 </div>
@@ -299,16 +283,30 @@ export default function Home() {
                   <div className="p-4">
                     <div className="row align-items-center">
                       <div className="mb-4 mb-md-0">
-                      <h3 className="text-center mb-1">Spin the Wheel</h3>
-                      <h6 className="text-center mb-2">for a random discovery!</h6>
+                        <h3 className="text-center mb-1">Spin the Wheel</h3>
+                        <h6 className="text-center mb-2">
+                          for a random discovery!
+                        </h6>
                       </div>
                     </div>
                   </div>
                   {/* Card header */}
 
                   {/* Card body */}
-                  <div style={{marginLeft:"40%", marginTop:"-10px", marginBottom: "40px"}}>
-                  <SpinWheel segments={segments} onFinished={() => {return }}/>
+                  <div
+                    style={{
+                      marginLeft: "40%",
+                      marginTop: "-10px",
+                      marginBottom: "40px",
+                    }}>
+                  
+                    <SpinWheel
+                      segments={segments}
+                      onFinished={() => {
+                        router.push('/displayPage')
+                      }}
+                    />
+                    
                   </div>
                   {/*
                   <div className="parent-container">
@@ -382,13 +380,9 @@ export default function Home() {
             <MDBIcon fab icon="github" />
           </MDBBtn>
         </MDBContainer>
-        <div
-          className="text-center p-3"
-          style={{ backgroundColor: "black" }}
-        >
+        <div className="text-center p-3" style={{ backgroundColor: "black" }}>
           © 2024 Wayne Mareci
         </div>
-
       </MDBFooter>
     </>
   );
